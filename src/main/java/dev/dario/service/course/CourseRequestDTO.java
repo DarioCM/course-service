@@ -2,9 +2,9 @@ package dev.dario.service.course;
 
 import java.util.Date;
 
-public class CourseDTO {
+public class CourseRequestDTO {
 
-  private Long courseId;
+
   private String name;
   private String trainerName;
   private String duration; // days
@@ -13,14 +13,6 @@ public class CourseDTO {
   private double fees;
   private boolean isCertificateAvailable;
   private String description;
-
-  public Long getCourseId() {
-    return courseId;
-  }
-
-  public void setCourseId(Long courseId) {
-    this.courseId = courseId;
-  }
 
   public String getName() {
     return name;
