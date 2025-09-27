@@ -1,5 +1,6 @@
 package dev.dario.service.course;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class CourseController {
 
   @PostMapping
   public ResponseEntity<CourseResponseDTO> addCourse(
-      @Validated @RequestBody CourseRequestDTO requestDTO) {
+      @RequestBody @Valid CourseRequestDTO requestDTO) {
     CourseResponseDTO newCourse = courseService.onboardNewCourse(requestDTO);
     return new ResponseEntity<>(newCourse, HttpStatus.CREATED);
   }
@@ -57,7 +58,7 @@ public class CourseController {
   //update
   @PutMapping("/{courseId}")
   public ResponseEntity<CourseResponseDTO> updateCourse(@PathVariable Long courseId,
-      @RequestBody CourseRequestDTO dto) {
+      @RequestBody @Valid CourseRequestDTO dto) {
     CourseResponseDTO responseDTO =
         service.updatedCourse(courseId, dto);
     return new ResponseEntity<>(responseDTO, HttpStatus.OK);
