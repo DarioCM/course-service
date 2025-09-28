@@ -97,4 +97,18 @@ public class CourseRequestDTO {
   public void setDescription(String description) {
     this.description = description;
   }
+
+  @Override
+  public String toString() {
+    return "CourseRequestDTO{" +
+        "name='" + name + '\'' +
+        ", trainerName='" + trainerName + '\'' +
+        ", duration='" + duration + '\'' +
+        ", startDate=" + startDate +
+        ", courseType='" + courseType + '\'' +
+        ", fees=" + fees +
+        ", isCertificateAvailable=" + isCertificateAvailable +
+        ", description='" + description + '\'' +
+        '}';
+  }
 }

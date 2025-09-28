@@ -3,12 +3,16 @@ package dev.dario.service.course;
 import dev.dario.service.error.CourseNotFound;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CourseServiceImpl implements CourseService {
 
-  private CourseRepository repository;
+  Logger log = LoggerFactory.getLogger(CourseServiceImpl.class);
+
+  private final CourseRepository repository;
 
   public CourseServiceImpl(CourseRepository repository) {
     this.repository = repository;
@@ -18,11 +22,13 @@ public class CourseServiceImpl implements CourseService {
   public CourseResponseDTO onboardNewCourse(CourseRequestDTO requestDTO) {
     CourseEntity entity = CourseUtil.fromDtoRequest(requestDTO);
     entity = repository.save(entity);
+    log.info("CourseService  onboardNewCourse : {} ", requestDTO);
     return CourseUtil.fromEntity(entity);
   }
 
   @Override
   public CourseResponseDTO findByCourseId(Long id) {
+    log.info("CourseResponseDTO findByCourseId : {} ", id);
     var entity = repository.findById(id)
         .orElseThrow(() -> new CourseNotFound("Course not found with id " + id));
     return CourseUtil.fromEntity(entity);
