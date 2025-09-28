@@ -1,5 +1,6 @@
 package dev.dario.service.course;
 
+import dev.dario.service.error.CourseNotFound;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public CourseResponseDTO findByCourseId(Long id) {
     var entity = repository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Course not found"));
+        .orElseThrow(() -> new CourseNotFound("Course not found with id " + id));
     return CourseUtil.fromEntity(entity);
 
   }
